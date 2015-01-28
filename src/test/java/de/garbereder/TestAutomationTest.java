@@ -1,0 +1,294 @@
+package de.garbereder;
+
+import junit.framework.TestCase;
+import org.junit.Assert;
+
+public class TestAutomationTest extends TestCase {
+
+    private class DummyClassWithAllBasicDatatypes {
+        protected int myInt;
+        protected Integer myIntObject;
+        protected float myFloat;
+        protected Float myFloatObject;
+        protected double myDouble;
+        protected Double myDoubleObject;
+        protected long myLong;
+        protected Long myLongObject;
+        protected byte myByte;
+        protected Byte myByteObject;
+        protected short myShort;
+        protected Short myShortObject;
+        protected char myChar;
+        protected Character myCharObject;
+        protected boolean myBoolean;
+        protected Boolean myBooleanObject;
+
+        public int setCounter = 0;
+
+        public int getMyInt() {
+            return myInt;
+        }
+
+        public void setMyInt(int myInt) {
+            setCounter++;
+            this.myInt = myInt;
+        }
+
+        public Integer getMyIntObject() {
+            return myIntObject;
+        }
+
+        public void setMyIntObject(Integer myIntObject) {
+            setCounter++;
+            this.myIntObject = myIntObject;
+        }
+
+        public float getMyFloat() {
+            return myFloat;
+        }
+
+        public void setMyFloat(float myFloat) {
+            setCounter++;
+            this.myFloat = myFloat;
+        }
+
+        public Float getMyFloatObject() {
+            return myFloatObject;
+        }
+
+        public void setMyFloatObject(Float myFloatObject) {
+            setCounter++;
+            this.myFloatObject = myFloatObject;
+        }
+
+        public double getMyDouble() {
+            return myDouble;
+        }
+
+        public void setMyDouble(double myDouble) {
+            setCounter++;
+            this.myDouble = myDouble;
+        }
+
+        public Double getMyDoubleObject() {
+            return myDoubleObject;
+        }
+
+        public void setMyDoubleObject(Double myDoubleObject) {
+            setCounter++;
+            this.myDoubleObject = myDoubleObject;
+        }
+
+        public long getMyLong() {
+            return myLong;
+        }
+
+        public void setMyLong(long myLong) {
+            setCounter++;
+            this.myLong = myLong;
+        }
+
+        public Long getMyLongObject() {
+            setCounter++;
+            return myLongObject;
+        }
+
+        public void setMyLongObject(Long myLongObject) {
+            setCounter++;
+            this.myLongObject = myLongObject;
+        }
+
+        public byte getMyByte() {
+            return myByte;
+        }
+
+        public void setMyByte(byte myByte) {
+            setCounter++;
+            this.myByte = myByte;
+        }
+
+        public Byte getMyByteObject() {
+            return myByteObject;
+        }
+
+        public void setMyByteObject(Byte myByteObject) {
+            setCounter++;
+            this.myByteObject = myByteObject;
+        }
+
+        public short getMyShort() {
+            return myShort;
+        }
+
+        public void setMyShort(short myShort) {
+            setCounter++;
+            this.myShort = myShort;
+        }
+
+        public Short getMyShortObject() {
+            return myShortObject;
+        }
+
+        public void setMyShortObject(Short myShortObject) {
+            setCounter++;
+            this.myShortObject = myShortObject;
+        }
+
+        public char getMyChar() {
+            return myChar;
+        }
+
+        public void setMyChar(char myChar) {
+            setCounter++;
+            this.myChar = myChar;
+        }
+
+        public Character getMyCharObject() {
+            return myCharObject;
+        }
+
+        public void setMyCharObject(Character myCharObject) {
+            setCounter++;
+            this.myCharObject = myCharObject;
+        }
+
+        public boolean isMyBoolean() {
+            return myBoolean;
+        }
+
+        public void setMyBoolean(boolean myBoolean) {
+            setCounter++;
+            this.myBoolean = myBoolean;
+        }
+
+        public Boolean getMyBooleanObject() {
+            return myBooleanObject;
+        }
+
+        public void setMyBooleanObject(Boolean myBooleanObject) {
+            setCounter++;
+            this.myBooleanObject = myBooleanObject;
+        }
+    }
+
+    private class CorrectEqualsAndHashCode extends DummyClassWithAllBasicDatatypes {
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof CorrectEqualsAndHashCode)) return false;
+
+            CorrectEqualsAndHashCode that = (CorrectEqualsAndHashCode) o;
+
+            if (myBoolean != that.myBoolean) return false;
+            if (myByte != that.myByte) return false;
+            if (myChar != that.myChar) return false;
+            if (Double.compare(that.myDouble, myDouble) != 0) return false;
+            if (Float.compare(that.myFloat, myFloat) != 0) return false;
+            if (myInt != that.myInt) return false;
+            if (myLong != that.myLong) return false;
+            if (myShort != that.myShort) return false;
+            if (myBooleanObject != null ? !myBooleanObject.equals(that.myBooleanObject) : that.myBooleanObject != null)
+                return false;
+            if (myByteObject != null ? !myByteObject.equals(that.myByteObject) : that.myByteObject != null)
+                return false;
+            if (myCharObject != null ? !myCharObject.equals(that.myCharObject) : that.myCharObject != null)
+                return false;
+            if (myDoubleObject != null ? !myDoubleObject.equals(that.myDoubleObject) : that.myDoubleObject != null)
+                return false;
+            if (myFloatObject != null ? !myFloatObject.equals(that.myFloatObject) : that.myFloatObject != null)
+                return false;
+            if (myIntObject != null ? !myIntObject.equals(that.myIntObject) : that.myIntObject != null) return false;
+            if (myLongObject != null ? !myLongObject.equals(that.myLongObject) : that.myLongObject != null)
+                return false;
+            if (myShortObject != null ? !myShortObject.equals(that.myShortObject) : that.myShortObject != null)
+                return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result;
+            long temp;
+            result = myInt;
+            result = 31 * result + (myIntObject != null ? myIntObject.hashCode() : 0);
+            result = 31 * result + (myFloat != +0.0f ? Float.floatToIntBits(myFloat) : 0);
+            result = 31 * result + (myFloatObject != null ? myFloatObject.hashCode() : 0);
+            temp = Double.doubleToLongBits(myDouble);
+            result = 31 * result + (int) (temp ^ (temp >>> 32));
+            result = 31 * result + (myDoubleObject != null ? myDoubleObject.hashCode() : 0);
+            result = 31 * result + (int) (myLong ^ (myLong >>> 32));
+            result = 31 * result + (myLongObject != null ? myLongObject.hashCode() : 0);
+            result = 31 * result + (int) myByte;
+            result = 31 * result + (myByteObject != null ? myByteObject.hashCode() : 0);
+            result = 31 * result + (int) myShort;
+            result = 31 * result + (myShortObject != null ? myShortObject.hashCode() : 0);
+            result = 31 * result + (int) myChar;
+            result = 31 * result + (myCharObject != null ? myCharObject.hashCode() : 0);
+            result = 31 * result + (myBoolean ? 1 : 0);
+            result = 31 * result + (myBooleanObject != null ? myBooleanObject.hashCode() : 0);
+            return result;
+        }
+    }
+
+    private class WrongEqualsAndHashCode extends DummyClassWithAllBasicDatatypes {
+
+        @Override
+        public int hashCode() {
+            return myInt;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof WrongEqualsAndHashCode)) return false;
+
+            WrongEqualsAndHashCode that = (WrongEqualsAndHashCode) o;
+
+            if (myBoolean != that.myBoolean) return false;
+
+            return true;
+        }
+    }
+
+    public void testTestEqualsAutomated() throws Exception {
+        DummyClassWithAllBasicDatatypes o1 = new DummyClassWithAllBasicDatatypes();
+        DummyClassWithAllBasicDatatypes o2 = new DummyClassWithAllBasicDatatypes();
+        Assert.assertFalse(TestAutomation.testEqualsAutomated(o1, o2));
+    }
+
+    public void testTestHashCodeAutomated() throws Exception {
+        DummyClassWithAllBasicDatatypes o1 = new DummyClassWithAllBasicDatatypes();
+        DummyClassWithAllBasicDatatypes o2 = new DummyClassWithAllBasicDatatypes();
+        Assert.assertFalse(TestAutomation.testHashCodeAutomated(o1, o2));
+    }
+
+    public void testTestEqualsAutomatedCorrect() throws Exception {
+        CorrectEqualsAndHashCode o1 = new CorrectEqualsAndHashCode();
+        CorrectEqualsAndHashCode o2 = new CorrectEqualsAndHashCode();
+        Assert.assertTrue(TestAutomation.testEqualsAutomated(o1, o2));
+        Assert.assertEquals(16, o1.setCounter);
+        Assert.assertEquals(32, o2.setCounter);
+    }
+
+    public void testTestHashCodeAutomatedCorrect() throws Exception {
+        CorrectEqualsAndHashCode o1 = new CorrectEqualsAndHashCode();
+        CorrectEqualsAndHashCode o2 = new CorrectEqualsAndHashCode();
+        Assert.assertTrue(TestAutomation.testHashCodeAutomated(o1, o2));
+        Assert.assertEquals(16, o1.setCounter);
+        Assert.assertEquals(32, o2.setCounter);
+    }
+
+    public void testTestEqualsAutomatedWrong() throws Exception {
+        WrongEqualsAndHashCode o1 = new WrongEqualsAndHashCode();
+        WrongEqualsAndHashCode o2 = new WrongEqualsAndHashCode();
+        Assert.assertFalse(TestAutomation.testEqualsAutomated(o1, o2));
+    }
+
+    public void testTestHashCodeAutomatedWrong() throws Exception {
+        WrongEqualsAndHashCode o1 = new WrongEqualsAndHashCode();
+        WrongEqualsAndHashCode o2 = new WrongEqualsAndHashCode();
+        Assert.assertFalse(TestAutomation.testHashCodeAutomated(o1, o2));
+    }
+}
