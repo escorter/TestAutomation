@@ -1,5 +1,6 @@
 package de.garbereder;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.junit.Assert;
 import org.mockito.Mockito;
@@ -78,7 +79,7 @@ public class TestAutomation {
      */
     public static final <A> boolean testHashCodeAutomated(A o1, A o2) throws Exception {
         boolean ok = true;
-        ok &= o1.hashCode() == o2.hashCode();
+        ok &= (o1.hashCode() == o2.hashCode());
 
         ok &= testAutomated(o1, o2,
                 new Callback() {
@@ -138,15 +139,39 @@ public class TestAutomation {
             Class<?> paramType = parameterTypes[0];
 
             Object[] params = createObjectFromType(paramType);
-            method.invoke(o1, params[0]);
-            ok &= c1.invoke(o1, o2);
-            method.invoke(o2, params[1]);
-            ok &= c2.invoke(o1, o2);
-            method.invoke(o2, params[0]);
-            ok &= c3.invoke(o1, o2);
-
+            ok &= invoke(o1, o2, method, params[0], c1);
+            ok &= invoke(o2, o1, method, params[1], c2);
+            ok &= invoke(o2, o1, method, params[0], c3);
         }
         return ok;
+    }
+
+    /**
+     * Invoke the method on o1 and check if the callback is true, if not display an error message
+     *
+     * @param o1 Object on which the method is called
+     * @param o2 Object to compare
+     * @param method Method to call on o1
+     * @param param Parameter transmitted to method
+     * @param callback The callback to check the result
+     * @return The result of the callback
+     * @throws Exception
+     */
+    private static final boolean invoke(Object o1, Object o2, Method method, Object param, Callback callback) throws Exception {
+        method.invoke(o1, param);
+        boolean tmp = callback.invoke(o1, o2);
+        if( !tmp ) printErrorMsg(method, o1, param);
+        return tmp;
+    }
+
+    /**
+     * Print an error message on the screen with information about the failure location
+     * @param invokedMethod The method called on targetObject
+     * @param targetObject The object on which the method was called on
+     * @param setValue The value which was used in the method as parameter
+     */
+    private static final void printErrorMsg(Method invokedMethod, Object targetObject, Object setValue) {
+        System.out.println("Test failed when invoking " + targetObject + "." + invokedMethod.getName() + "(" + setValue + ")");
     }
 
     /**

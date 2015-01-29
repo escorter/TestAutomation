@@ -20,5 +20,11 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <site>
+            <id>www.garbereder.de</id>
+            <url>file://tmp</url>
+        </site>
+    </distributionManagement>
 
 </project>
