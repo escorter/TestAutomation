@@ -2,8 +2,28 @@ package de.garbereder;
 
 import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class TestAutomationTest extends TestCase {
+
+    private DummyClassWithAllBasicDatatypes dummy1;
+    private DummyClassWithAllBasicDatatypes dummy2;
+    private CorrectEqualsAndHashCode correct1;
+    private CorrectEqualsAndHashCode correct2;
+    private WrongEqualsAndHashCode wrong1;
+    private WrongEqualsAndHashCode wrong2;
+
+    @Before
+    public void setUp() throws Exception {
+        dummy1 = new DummyClassWithAllBasicDatatypes();
+        dummy2 = new DummyClassWithAllBasicDatatypes();
+        correct1 = new CorrectEqualsAndHashCode();
+        correct2 = new CorrectEqualsAndHashCode();
+        wrong1 = new WrongEqualsAndHashCode();
+        wrong2 = new WrongEqualsAndHashCode();
+        System.out.println("INIT INIT INIT");
+    }
 
     private class DummyClassWithAllBasicDatatypes {
         protected int myInt;
@@ -169,6 +189,29 @@ public class TestAutomationTest extends TestCase {
             setCounter++;
             this.myBooleanObject = myBooleanObject;
         }
+
+        @Override
+        public String toString() {
+            return "DummyClassWithAllBasicDatatypes{" +
+                    "myInt=" + myInt +
+                    ", myIntObject=" + myIntObject +
+                    ", myFloat=" + myFloat +
+                    ", myFloatObject=" + myFloatObject +
+                    ", myDouble=" + myDouble +
+                    ", myDoubleObject=" + myDoubleObject +
+                    ", myLong=" + myLong +
+                    ", myLongObject=" + myLongObject +
+                    ", myByte=" + myByte +
+                    ", myByteObject=" + myByteObject +
+                    ", myShort=" + myShort +
+                    ", myShortObject=" + myShortObject +
+                    ", myChar=" + myChar +
+                    ", myCharObject=" + myCharObject +
+                    ", myBoolean=" + myBoolean +
+                    ", myBooleanObject=" + myBooleanObject +
+                    ", setCounter=" + setCounter +
+                    '}';
+        }
     }
 
     private class CorrectEqualsAndHashCode extends DummyClassWithAllBasicDatatypes {
@@ -252,43 +295,59 @@ public class TestAutomationTest extends TestCase {
         }
     }
 
+    @Test
     public void testTestEqualsAutomated() throws Exception {
-        DummyClassWithAllBasicDatatypes o1 = new DummyClassWithAllBasicDatatypes();
-        DummyClassWithAllBasicDatatypes o2 = new DummyClassWithAllBasicDatatypes();
-        Assert.assertFalse(TestAutomation.testEqualsAutomated(o1, o2));
+        try {
+            TestAutomation.testEqualsAutomated(dummy1, dummy2);
+        } catch (Error e) {
+            return;
+        }
+        fail("Expected AssertionError in testEqualsAutomated().");
     }
 
+    @Test
     public void testTestHashCodeAutomated() throws Exception {
-        DummyClassWithAllBasicDatatypes o1 = new DummyClassWithAllBasicDatatypes();
-        DummyClassWithAllBasicDatatypes o2 = new DummyClassWithAllBasicDatatypes();
-        Assert.assertFalse(TestAutomation.testHashCodeAutomated(o1, o2));
+        try {
+            TestAutomation.testHashCodeAutomated(dummy1, dummy2);
+        } catch (Error e) {
+            return;
+        }
+        fail("Expected AssertionError in testHashCodeAutomated().");
     }
 
+    @Test
     public void testTestEqualsAutomatedCorrect() throws Exception {
-        CorrectEqualsAndHashCode o1 = new CorrectEqualsAndHashCode();
-        CorrectEqualsAndHashCode o2 = new CorrectEqualsAndHashCode();
-        Assert.assertTrue(TestAutomation.testEqualsAutomated(o1, o2));
-        Assert.assertEquals(16, o1.setCounter);
-        Assert.assertEquals(32, o2.setCounter);
+        System.out.println(correct1);
+        System.out.println(correct2);
+        TestAutomation.testEqualsAutomated(correct1, correct2);
+        Assert.assertEquals(16, correct1.setCounter);
+        Assert.assertEquals(32, correct2.setCounter);
     }
 
+    @Test
     public void testTestHashCodeAutomatedCorrect() throws Exception {
-        CorrectEqualsAndHashCode o1 = new CorrectEqualsAndHashCode();
-        CorrectEqualsAndHashCode o2 = new CorrectEqualsAndHashCode();
-        Assert.assertTrue(TestAutomation.testHashCodeAutomated(o1, o2));
-        Assert.assertEquals(16, o1.setCounter);
-        Assert.assertEquals(32, o2.setCounter);
+        TestAutomation.testHashCodeAutomated(correct1, correct2);
+        Assert.assertEquals(16, correct1.setCounter);
+        Assert.assertEquals(32, correct2.setCounter);
     }
 
+    @Test
     public void testTestEqualsAutomatedWrong() throws Exception {
-        WrongEqualsAndHashCode o1 = new WrongEqualsAndHashCode();
-        WrongEqualsAndHashCode o2 = new WrongEqualsAndHashCode();
-        Assert.assertFalse(TestAutomation.testEqualsAutomated(o1, o2));
+        try {
+            TestAutomation.testEqualsAutomated(wrong1, wrong2);
+        } catch (Error e) {
+            return;
+        }
+        fail("Expected AssertionError in testEqualsAutomated().");
     }
 
+    @Test
     public void testTestHashCodeAutomatedWrong() throws Exception {
-        WrongEqualsAndHashCode o1 = new WrongEqualsAndHashCode();
-        WrongEqualsAndHashCode o2 = new WrongEqualsAndHashCode();
-        Assert.assertFalse(TestAutomation.testHashCodeAutomated(o1, o2));
+        try {
+            TestAutomation.testHashCodeAutomated(wrong1, wrong2);
+        } catch (Error e) {
+            return;
+        }
+        fail("Expected AssertionError in testHashCodeAutomated().");
     }
 }
