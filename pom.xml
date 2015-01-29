@@ -7,6 +7,7 @@
     <groupId>de.garbereder</groupId>
     <artifactId>TestAutomation</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -19,12 +20,5 @@
             <version>1.9.5</version>
         </dependency>
     </dependencies>
-
-    <distributionManagement>
-        <site>
-            <id>www.garbereder.de</id>
-            <url>file://tmp</url>
-        </site>
-    </distributionManagement>
 
 </project>
