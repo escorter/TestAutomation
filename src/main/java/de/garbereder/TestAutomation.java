@@ -165,6 +165,9 @@ public class TestAutomation {
             Object[] params = createTwoObjectsFromType(paramType);
             invoke(o1, o2, method, params[0], c1);
             invoke(o2, o1, method, params[1], c2);
+            if( !paramType.isPrimitive() ) {
+                invoke(o2, o1, method, null,      c2);
+            }
             invoke(o2, o1, method, params[0], c3);
         }
     }
