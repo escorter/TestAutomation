@@ -45,13 +45,6 @@ public class TestAutomation {
                 new Callback() {
                     @Override
                     public <A> void call(A o1, A o2) {
-                        Assert.assertNotEquals(o1, o2);
-                        Assert.assertNotEquals(o2, o1);
-                    }
-                },
-                new Callback() {
-                    @Override
-                    public <A> void call(A o1, A o2) {
                         Assert.assertEquals(o1, o2);
                         Assert.assertEquals(o2, o1);
                     }
@@ -74,12 +67,6 @@ public class TestAutomation {
         Assert.assertEquals(o1.hashCode(), o2.hashCode());
 
         testAutomated(o1, o2,
-                new Callback() {
-                    @Override
-                    public <A> void call(A o1, A o2) {
-                        Assert.assertNotEquals(o1.hashCode(), o2.hashCode());
-                    }
-                },
                 new Callback() {
                     @Override
                     public <A> void call(A o1, A o2) {
@@ -142,13 +129,12 @@ public class TestAutomation {
      * @param o1  An instance of the system under test (SUT)
      * @param o2  A second instance of the SUT
      * @param <A> The class of the SUT
-     * @param c1  Callback 1
-     * @param c2  Callback 1
-     * @param c3  Callback 1
+     * @param notEqualsCallback  Callback 1
+     * @param equalsCallback  Callback 1
      * @throws Exception      If the testing it self failed
      * @throws AssertionError If the test failed
      */
-    private static final <A> void testAutomated(A o1, A o2, Callback c1, Callback c2, Callback c3) throws Exception, AssertionError {
+    private static final <A> void testAutomated(A o1, A o2, Callback notEqualsCallback, Callback equalsCallback) throws Exception, AssertionError {
         Method[] methods = o1.getClass().getMethods();
         for (int i = 0; i < methods.length; ++i) {
             Method method = methods[i];
@@ -163,12 +149,16 @@ public class TestAutomation {
             Class<?> paramType = parameterTypes[0];
 
             Object[] params = createTwoObjectsFromType(paramType);
-            invoke(o1, o2, method, params[0], c1);
-            invoke(o2, o1, method, params[1], c2);
+
+            equalsCallback.call(o1, o2);
             if( !paramType.isPrimitive() ) {
-                invoke(o2, o1, method, null,      c2);
+                method.invoke(o1, new Object[]{ null });
+                method.invoke(o2, new Object[]{ null });
             }
-            invoke(o2, o1, method, params[0], c3);
+            equalsCallback.call(o1, o2);
+            invoke(o1, o2, method, params[0], notEqualsCallback);
+            invoke(o2, o1, method, params[1], notEqualsCallback);
+            invoke(o2, o1, method, params[0], equalsCallback);
         }
     }
 

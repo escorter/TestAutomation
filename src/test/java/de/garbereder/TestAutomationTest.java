@@ -331,14 +331,14 @@ public class TestAutomationTest extends TestCase {
     @Test
     public void testTestEqualsAutomatedCorrect() throws Exception {
         TestAutomation.testEqualsAutomated(correct1, correct2);
-        Assert.assertEquals(17, correct1.setCounter);
+        Assert.assertEquals(26, correct1.setCounter);
         Assert.assertEquals(43, correct2.setCounter);
     }
 
     @Test
     public void testTestHashCodeAutomatedCorrect() throws Exception {
         TestAutomation.testHashCodeAutomated(correct1, correct2);
-        Assert.assertEquals(17, correct1.setCounter);
+        Assert.assertEquals(26, correct1.setCounter);
         Assert.assertEquals(43, correct2.setCounter);
     }
 
