@@ -42,8 +42,18 @@ public class TestAutomationTest extends TestCase {
         protected Character myCharObject;
         protected boolean myBoolean;
         protected Boolean myBooleanObject;
+        protected String myString;
 
         public int setCounter = 0;
+
+        public String getMyString() {
+            return myString;
+        }
+
+        public void setMyString(String myString) {
+            setCounter++;
+            this.myString = myString;
+        }
 
         public int getMyInt() {
             return myInt;
@@ -209,6 +219,7 @@ public class TestAutomationTest extends TestCase {
                     ", myCharObject=" + myCharObject +
                     ", myBoolean=" + myBoolean +
                     ", myBooleanObject=" + myBooleanObject +
+                    ", myString=" + myString +
                     ", setCounter=" + setCounter +
                     '}';
         }
@@ -246,6 +257,8 @@ public class TestAutomationTest extends TestCase {
                 return false;
             if (myShortObject != null ? !myShortObject.equals(that.myShortObject) : that.myShortObject != null)
                 return false;
+            if (myString != null ? !myString.equals(that.myString) : that.myString != null)
+                return false;
 
             return true;
         }
@@ -271,6 +284,7 @@ public class TestAutomationTest extends TestCase {
             result = 31 * result + (myCharObject != null ? myCharObject.hashCode() : 0);
             result = 31 * result + (myBoolean ? 1 : 0);
             result = 31 * result + (myBooleanObject != null ? myBooleanObject.hashCode() : 0);
+            result = 31 * result + (myString != null ? myString.hashCode() : 0);
             return result;
         }
     }
@@ -320,15 +334,15 @@ public class TestAutomationTest extends TestCase {
         System.out.println(correct1);
         System.out.println(correct2);
         TestAutomation.testEqualsAutomated(correct1, correct2);
-        Assert.assertEquals(16, correct1.setCounter);
-        Assert.assertEquals(32, correct2.setCounter);
+        Assert.assertEquals(17, correct1.setCounter);
+        Assert.assertEquals(34, correct2.setCounter);
     }
 
     @Test
     public void testTestHashCodeAutomatedCorrect() throws Exception {
         TestAutomation.testHashCodeAutomated(correct1, correct2);
-        Assert.assertEquals(16, correct1.setCounter);
-        Assert.assertEquals(32, correct2.setCounter);
+        Assert.assertEquals(17, correct1.setCounter);
+        Assert.assertEquals(34, correct2.setCounter);
     }
 
     @Test

@@ -226,6 +226,8 @@ public class TestAutomation {
             param1 = true;
         } else if (type == char.class || type == Character.class) {
             param1 = 'a';
+        } else if (type == String.class) {
+            param1 = "abc";
         } else {
             param1 = Mockito.mock(type);
         }
@@ -267,6 +269,9 @@ public class TestAutomation {
         } else if (type == char.class || type == Character.class) {
             param1 = 'a';
             param2 = 'b';
+        } else if (type == String.class) {
+            param1 = "abc";
+            param2 = "xyz";
         } else {
             param1 = Mockito.mock(type);
             param2 = Mockito.mock(type);
