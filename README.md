@@ -6,10 +6,15 @@ Note: The automated testing works only for POJOs that have no fancy magic since 
 
 ```java
     @Test
-    public void testAutomated() throws Exception {
+    public void testAutomatedEquals() throws Exception {
         MyObject myObject1 = new MyObject();
         MyObject myObject2 = new MyObject();
         Assert.assertTrue(TestAutomation.testEqualsAutomated(myObject1, myObject2));
+    }
+    @Test
+    public void testAutomatedHash() throws Exception {
+        MyObject myObject1 = new MyObject();
+        MyObject myObject2 = new MyObject();
         Assert.assertTrue(TestAutomation.testHashCodeAutomated(myObject1, myObject2));
     }
 ```
