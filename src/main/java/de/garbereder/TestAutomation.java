@@ -33,6 +33,7 @@ public class TestAutomation {
         boolean ok = true;
         ok &= !o1.equals(null);
         ok &= !o1.equals(new Object());
+        ok &= o1.equals(o1);
         ok &= o1.equals(o2);
 
         ok &= testAutomated(o1, o2,
