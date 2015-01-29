@@ -22,7 +22,6 @@ public class TestAutomationTest extends TestCase {
         correct2 = new CorrectEqualsAndHashCode();
         wrong1 = new WrongEqualsAndHashCode();
         wrong2 = new WrongEqualsAndHashCode();
-        System.out.println("INIT INIT INIT");
     }
 
     private class DummyClassWithAllBasicDatatypes {
@@ -331,8 +330,6 @@ public class TestAutomationTest extends TestCase {
 
     @Test
     public void testTestEqualsAutomatedCorrect() throws Exception {
-        System.out.println(correct1);
-        System.out.println(correct2);
         TestAutomation.testEqualsAutomated(correct1, correct2);
         Assert.assertEquals(17, correct1.setCounter);
         Assert.assertEquals(34, correct2.setCounter);
