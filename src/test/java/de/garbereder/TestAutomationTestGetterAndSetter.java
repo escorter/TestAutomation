@@ -12,6 +12,8 @@ public class TestAutomationTestGetterAndSetter extends TestCase {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
+    protected TestAutomation testAutomation = new TestAutomation();
+
     private class DummyClass {
         protected int myInt;
 
@@ -35,14 +37,14 @@ public class TestAutomationTestGetterAndSetter extends TestCase {
     @Test
     public void testTestHashCodeAutomated() throws Exception {
         DummyClass o = new DummyClass();
-        TestAutomation.testGetterAndSetterAutomated(o);
+        testAutomation.testGetterAndSetterAutomated(o);
     }
 
     @Test
     public void testTestHashCodeAutomatedFails() throws Exception {
         WrongGetter o = new WrongGetter();
         try {
-            TestAutomation.testGetterAndSetterAutomated(o);
+            testAutomation.testGetterAndSetterAutomated(o);
         } catch (Error e) {
             return;
         }

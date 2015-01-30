@@ -14,6 +14,8 @@ public class TestAutomationTest extends TestCase {
     private WrongEqualsAndHashCode wrong1;
     private WrongEqualsAndHashCode wrong2;
 
+    protected TestAutomation testAutomation = new TestAutomation();
+
     @Before
     public void setUp() throws Exception {
         dummy1 = new DummyClassWithAllBasicDatatypes();
@@ -311,7 +313,7 @@ public class TestAutomationTest extends TestCase {
     @Test
     public void testTestEqualsAutomated() throws Exception {
         try {
-            TestAutomation.testEqualsAutomated(dummy1, dummy2);
+            testAutomation.testEqualsAutomated(dummy1, dummy2);
         } catch (Error e) {
             return;
         }
@@ -321,7 +323,7 @@ public class TestAutomationTest extends TestCase {
     @Test
     public void testTestHashCodeAutomated() throws Exception {
         try {
-            TestAutomation.testHashCodeAutomated(dummy1, dummy2);
+            testAutomation.testHashCodeAutomated(dummy1, dummy2);
         } catch (Error e) {
             return;
         }
@@ -330,14 +332,14 @@ public class TestAutomationTest extends TestCase {
 
     @Test
     public void testTestEqualsAutomatedCorrect() throws Exception {
-        TestAutomation.testEqualsAutomated(correct1, correct2);
+        testAutomation.testEqualsAutomated(correct1, correct2);
         Assert.assertEquals(26, correct1.setCounter);
         Assert.assertEquals(43, correct2.setCounter);
     }
 
     @Test
     public void testTestHashCodeAutomatedCorrect() throws Exception {
-        TestAutomation.testHashCodeAutomated(correct1, correct2);
+        testAutomation.testHashCodeAutomated(correct1, correct2);
         Assert.assertEquals(26, correct1.setCounter);
         Assert.assertEquals(43, correct2.setCounter);
     }
@@ -345,7 +347,7 @@ public class TestAutomationTest extends TestCase {
     @Test
     public void testTestEqualsAutomatedWrong() throws Exception {
         try {
-            TestAutomation.testEqualsAutomated(wrong1, wrong2);
+            testAutomation.testEqualsAutomated(wrong1, wrong2);
         } catch (Error e) {
             return;
         }
@@ -355,7 +357,7 @@ public class TestAutomationTest extends TestCase {
     @Test
     public void testTestHashCodeAutomatedWrong() throws Exception {
         try {
-            TestAutomation.testHashCodeAutomated(wrong1, wrong2);
+            testAutomation.testHashCodeAutomated(wrong1, wrong2);
         } catch (Error e) {
             return;
         }
