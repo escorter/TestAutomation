@@ -5,23 +5,37 @@ Note: The automated testing works only for POJOs that have no fancy magic since 
 ## Example:
 
 ```java
+
+    private TestAutomation testAutomation;
+
+    @Before
+    public void setUp() {
+        testAutomation = new TestAutomation();
+    }
+
     @Test
     public void testAutomatedEquals() throws Exception {
         MyObject myObject1 = new MyObject();
         MyObject myObject2 = new MyObject();
-        TestAutomation.testEqualsAutomated(myObject1, myObject2);
+        testAutomation.testEqualsAutomated(myObject1, myObject2);
     }
     
     @Test
     public void testAutomatedHash() throws Exception {
         MyObject myObject1 = new MyObject();
         MyObject myObject2 = new MyObject();
-        TestAutomation.testHashCodeAutomated(myObject1, myObject2);
+        testAutomation.testHashCodeAutomated(myObject1, myObject2);
     }
     
     @Test
     public void testAutomatedGetterAndSetter() throws Exception {
         MyObject myObject = new MyObject();
-        TestAutomation.testGetterAndSetterAutomated(myObject);
+        testAutomation.testGetterAndSetterAutomated(myObject);
     }
 ```
+
+## TestAutomationTestCase
+todo
+
+## Handling final classes
+todo
