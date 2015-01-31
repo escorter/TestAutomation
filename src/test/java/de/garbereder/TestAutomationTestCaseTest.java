@@ -1,68 +1,30 @@
 package de.garbereder;
 
+import de.garbereder.util.CorrectClass;
+import de.garbereder.util.DefectClass;
 import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class TestAutomationTestCaseTest extends TestCase {
 
-    private class A {
-        protected int i;
-
-        public int getI() {
-            return i;
-        }
-
-        public void setI(int i) {
-            this.i = i;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof A)) return false;
-
-            A a = (A) o;
-
-            if (i != a.i) return false;
-
-            return true;
-        }
-
-        @Override
-        public int hashCode() {
-            return i;
-        }
-    }
-
-    private class B {
-        protected int i;
-
-        public int getI() {
-            return i;
-        }
-
-        public void setI(int i) {
-        }
-    }
-
-    TestAutomationTestCase<A> testAutomationTestCaseA;
-    TestAutomationTestCase<B> testAutomationTestCaseB;
+    TestAutomationTestCase<CorrectClass> testAutomationTestCaseA;
+    TestAutomationTestCase<DefectClass> testAutomationTestCaseB;
 
     @Before
     public void setUp() throws Exception {
-        testAutomationTestCaseA = new TestAutomationTestCase<A>();
-        HashSet<Pair<A, A>> systemsUnderTest = new HashSet<Pair<A, A>>();
-        systemsUnderTest.add(new Pair<A, A>(new A(), new A()));
+        testAutomationTestCaseA = new TestAutomationTestCase<CorrectClass>();
+        HashSet<Pair<CorrectClass, CorrectClass>> systemsUnderTest = new HashSet<Pair<CorrectClass, CorrectClass>>();
+        systemsUnderTest.add(new Pair<CorrectClass, CorrectClass>(new CorrectClass(), new CorrectClass()));
         testAutomationTestCaseA.setSystemsUnderTest(systemsUnderTest);
 
-        testAutomationTestCaseB = new TestAutomationTestCase<B>();
-        HashSet<Pair<B, B>> systemsUnderTestB = new HashSet<Pair<B, B>>();
-        systemsUnderTestB.add(new Pair<B, B>(new B(), new B()));
+        testAutomationTestCaseB = new TestAutomationTestCase<DefectClass>();
+        HashSet<Pair<DefectClass, DefectClass>> systemsUnderTestB = new HashSet<Pair<DefectClass, DefectClass>>();
+        systemsUnderTestB.add(new Pair<DefectClass, DefectClass>(new DefectClass(), new DefectClass()));
         testAutomationTestCaseB.setSystemsUnderTest(systemsUnderTestB);
     }
 
@@ -109,5 +71,15 @@ public class TestAutomationTestCaseTest extends TestCase {
             return;
         }
         fail("Expected Assertion Error, but got none");
+    }
+
+    public void testEmptyConstructorHelper() throws Exception {
+        TestAutomationTestCase<CorrectClass> sut = new TestAutomationTestCase<CorrectClass>();
+        sut.emptyConstructorSetUp(CorrectClass.class);
+        Set<Pair<CorrectClass, CorrectClass>> suts = sut.getSystemsUnderTest();
+        Pair<CorrectClass, CorrectClass> expected = new Pair(new CorrectClass(), new CorrectClass());
+        Object[] sutsArray = suts.toArray();
+        Assert.assertEquals(1, suts.size());
+        Assert.assertEquals(expected, sutsArray[0]);
     }
 }

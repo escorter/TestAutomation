@@ -363,4 +363,5 @@ public class TestAutomationTest extends TestCase {
         }
         fail("Expected AssertionError in testHashCodeAutomated().");
     }
+
 }
