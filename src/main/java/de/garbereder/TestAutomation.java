@@ -229,7 +229,7 @@ public class TestAutomation {
      * @param setValue      The value which was used in the method as parameter
      */
     private static final void printErrorMsg(Method invokedMethod, Object targetObject, Object setValue) {
-        System.out.println("Test failed when invoking " + targetObject + "." + invokedMethod.getName() + "(" + setValue + ")");
+        System.out.println("Test failed when invoking " + targetObject.getClass().getName() + "." + invokedMethod.getName() + "(" + setValue + ")");
     }
 
     /**
