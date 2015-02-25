@@ -246,17 +246,17 @@ public class TestAutomation {
         } catch (RuntimeException e) {
             // @todo use getInstance here too!
             if (type == long.class || type == Long.class) {
-                param1 = 1L;
+                param1 = 2L;
             } else if (type == int.class || type == Integer.class) {
-                param1 = 1;
+                param1 = 2;
             } else if (type == float.class || type == Float.class) {
-                param1 = 1.0f;
+                param1 = 2.0f;
             } else if (type == double.class || type == Double.class) {
-                param1 = 1.0d;
+                param1 = 2.0d;
             } else if (type == byte.class || type == Byte.class) {
-                param1 = (byte) 1;
+                param1 = (byte) 2;
             } else if (type == short.class || type == Short.class) {
-                param1 = (short) 1;
+                param1 = (short) 2;
             } else if (type == boolean.class || type == Boolean.class) {
                 param1 = true;
             } else if (type == char.class || type == Character.class) {
@@ -287,22 +287,22 @@ public class TestAutomation {
             param2 = getInstance(type, 1);
         } catch (RuntimeException e) {
             if (type == long.class || type == Long.class) {
-                param1 = 1L;
+                param1 = 3L;
                 param2 = 2L;
             } else if (type == int.class || type == Integer.class) {
-                param1 = 1;
+                param1 = 3;
                 param2 = 2;
             } else if (type == float.class || type == Float.class) {
-                param1 = 1.0f;
+                param1 = 3.0f;
                 param2 = 2.0f;
             } else if (type == double.class || type == Double.class) {
-                param1 = 1.0d;
+                param1 = 3.0d;
                 param2 = 2.0d;
             } else if (type == byte.class || type == Byte.class) {
-                param1 = (byte) 1;
+                param1 = (byte) 3;
                 param2 = (byte) 2;
             } else if (type == short.class || type == Short.class) {
-                param1 = (short) 1;
+                param1 = (short) 3;
                 param2 = (short) 2;
             } else if (type == boolean.class || type == Boolean.class) {
                 param1 = true;
